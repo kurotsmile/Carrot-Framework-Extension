@@ -14,6 +14,17 @@ class Carrot_Extenison{
     onLoad(){
         
     }
+    
+    copy(text,is_msg=false){
+        var copyFrom = document.createElement("textarea");
+        copyFrom.textContent = text;
+        document.body.appendChild(copyFrom);
+        copyFrom.select();
+        document.execCommand('copy');
+        copyFrom.blur();
+        document.body.removeChild(copyFrom);
+        if(is_msg) ce.msg("Copied","Copy","success");
+    }
 
     setColor(color){
         cr.color_btn=color;
@@ -73,7 +84,7 @@ class Carrot_Extenison{
             });
 
             $.each(ce.limitItem(list_app,10),function(index,app){
-                var empApp=$('<div class="btn btn-sm btn-light"><i class="fa fa-rocket" aria-hidden="true"></i> '+app.name_en+'</div>');
+                var empApp=$('<div class="btn btn-sm btn-light m-1"><i class="fa fa-rocket" aria-hidden="true"></i> '+app.name_en+'</div>');
                 $(empApp).click(function(){
                     window.open(app.microsoft_store,"_blank");
                 });
@@ -104,6 +115,23 @@ class Carrot_Extenison{
     containsHTMLTags(str) {
         const htmlTagPattern = /<\/?[a-z][\s\S]*>/i;
         return htmlTagPattern.test(str);
+    }
+
+    donation_html(){
+        var html=$(`
+            <h5>Dear partners and community,</h5>
+            <p style="font-size: 11px;">
+              I am currently developing applications and entertainment services aimed at bringing fresh and valuable experiences to everyone. To make these projects a reality, I am in need of financial support. Every contribution, no matter how small, will be a tremendous motivation for me to continue developing and perfecting my products.
+            </p>
+            <div class="text-center">
+              <a id="btn_donation"  class="btn btn-sm btn-info"><i class="fas fa-donate"></i> Donation</a><br/>
+              <small>Thank you sincerely for your support!</small>
+            </div>
+        `);
+        $(html).find("#btn_donation").click(function(){
+            window.open("https://www.paypal.com/paypalme/kurotsmile","_blank");
+        });
+        return html;
     }
 }
 
