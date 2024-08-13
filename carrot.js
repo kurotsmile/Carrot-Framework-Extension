@@ -1,5 +1,6 @@
 class Carrot_Extenison{
 
+    extension_id="";
     lang="en";
 
     color_btn="#fa1675";
@@ -132,6 +133,12 @@ class Carrot_Extenison{
             window.open("https://www.paypal.com/paypalme/kurotsmile","_blank");
         });
         return html;
+    }
+
+    rate(){
+        chrome.tabs.create({
+            url: 'https://chrome.google.com/webstore/detail/'+ce.extension_id+'/reviews'
+        });
     }
 }
 
