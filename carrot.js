@@ -28,15 +28,15 @@ class Carrot_Extenison{
     }
 
     setColor(color){
-        cr.color_btn=color;
+        ce.color_btn=color;
     }
 
     set_color_btn(color){
-        cr.color_btn=color;
+        ce.color_btn=color;
     }
 
     set_color_active(color){
-        cr.color_active=color;
+        ce.color_active=color;
     }
 
     limitItem(array, length) {
@@ -139,6 +139,15 @@ class Carrot_Extenison{
         chrome.tabs.create({
             url: 'https://chrome.google.com/webstore/detail/'+ce.extension_id+'/reviews'
         });
+    }
+
+    top(act_start=null,act_done=null){
+        $('html,body').animate({ scrollTop: 0 }, "slow", function() {
+            if(act_start!=null) act_start();
+            setTimeout(function() {
+                if(act_done!=null) act_done();
+            }, 1000);
+        }); 
     }
 }
 
